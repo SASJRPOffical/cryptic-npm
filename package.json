@@ -1,30 +1,30 @@
 {
-    "name": "ccore",
-    "version": "1.0.0",
-    "description": "Cryptic Core npm package.",
-    "main": "main.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/SASJRPOffical/cryptic-npm.git"
-    },
-    "keywords": [
-        "Core",
-        "Discord",
-        "Ban",
-        "Database",
-        "FiveM",
-        "Firewall"
-    ],
-    "author": "DeathSoulYT",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/SASJRPOffical/cryptic-npm/issues"
-    },
-    "homepage": "https://github.com/SASJRPOffical/cryptic-npm#readme",
-    "dependencies": {
-      "axios": "^0.27.2"
-    }
+  "name": "cryptic-core",
+  "version": "1.0.1",
+  "description": "Cryptic Core npm package.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SASJRPOffical/cryptic-npm.git"
+  },
+  "keywords": [
+    "Core",
+    "Discord",
+    "Ban",
+    "Database",
+    "FiveM",
+    "Firewall"
+  ],
+  "author": "DeathSoulYT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SASJRPOffical/cryptic-npm/issues"
+  },
+  "homepage": "https://github.com/SASJRPOffical/cryptic-npm#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
   }
+}

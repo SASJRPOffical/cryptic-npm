@@ -61,12 +61,28 @@ async function getGlobalBans(httpRoute) {
     return listFetch.data;
 }
 
-async function deleteBan(userId, banId, reason, staff, extras) {
+async function deleteBan(banId, reason, databaseName, staff, extras, httpRoute) {
     if (typeof providedToken == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use .setToken("YOUR_API_TOKEN") before utilisiing getGlobalBans.');
     if (typeof providedHost == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use .setHost("YOUR_API_HOST") before utilisiing getGlobalBans.');
     if (typeof httpRoute == 'undefined') return console.log('[Cryptic Core] Firewall: no API Route was provided');
-    
-    
+
+    const fetch = await axios({
+        method: 'POST',
+        url: `${providedHost}/${httpRoute}`,
+        headers: {
+            Accept: 'application/json, text/plain, */*',
+            'User-Agent': '*',
+            'authorization': providedToken
+        },
+        data: {
+            "banId": banId,
+            "databaseName": databaseName,
+            "reason": reason,
+            "staff": staff,
+            "extras": extras, 
+        }
+    });
+    return fetch.data;
 }
 
 
@@ -75,7 +91,7 @@ module.exports = {
     setToken: setToken,
     setHost: setHost,
     postBan: postBan,
-    // deleteBan: deleteBan,
+    deleteBan: deleteBan,
     getGlobalBans: getGlobalBans,
     searchBans: searchBans,
 }
