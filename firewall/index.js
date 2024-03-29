@@ -1,5 +1,5 @@
-const bans = require('bans.js');
-const appeals = require('appeals.js');
+const bans = require('./bans');
+const appeals = require('./appeals');
 
 module.exports = {
     bans: bans,
