@@ -1,4 +1,5 @@
 const token = require('./token');
+let provideGitUrl = undefined;
 let providedHost = undefined;
 
 function setHost(host) {
