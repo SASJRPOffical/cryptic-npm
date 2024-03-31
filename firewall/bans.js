@@ -77,7 +77,6 @@ async function deleteBan(banId, reason, databaseName, staff, extras, httpRoute) 
 }
 
 module.exports = {
-    setHost: setHost,
     create: postBan,
     delete: deleteBan,
     search: searchBans,
