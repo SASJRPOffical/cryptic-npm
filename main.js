@@ -6,4 +6,4 @@ module.exports = {
     firewall: firewall,
     host: host,
     token: token,
-}
+};
