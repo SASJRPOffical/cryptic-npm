@@ -28,8 +28,8 @@ async function postBan(userId, userTag, databaseName, banReason, banProof, staff
 }
 
 async function searchBans(userId, httpRoute) {
-    if (typeof token.get() == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use .setToken("YOUR_API_TOKEN") before utilisiing postBan.');
-    if (typeof host.get() == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use .setHost("YOUR_API_HOST") before utilisiing postBan.');
+    // if (typeof token.get() == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use .setToken("YOUR_API_TOKEN") before utilisiing postBan.');
+    if (typeof host.get() == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use host.set("YOUR_API_HOST") before utilisiing bans search.');
     if (typeof httpRoute == 'undefined') return console.log('[Cryptic Core] Firewall: no API Route was provided');
     if (typeof userId == 'undefined') console.log('No userId was provided in node request.');
     let listFetch = await axios({

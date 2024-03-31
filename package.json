@@ -1,6 +1,6 @@
 {
   "name": "cryptic-core",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Cryptic Core npm package.",
   "main": "main.js",
   "scripts": {
