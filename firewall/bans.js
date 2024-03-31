@@ -1,20 +1,14 @@
 const axios = require('axios');
-const token = require('./token');
-let providedHost = undefined;
-
-function setHost(host) {
-    if (typeof token.get() == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use .setToken("YOUR_API_TOKEN") before utilisiing getGlobalBans.');
-    if (typeof host == 'undefined') return console.log('Please provide the host url for you web api.');
-    providedHost = host;
-}
+const host = require('../global/host');
+const token = require('../global/token');
 
 async function postBan(userId, userTag, databaseName, banReason, banProof, staff, extras, httpRoute) {
-    if (typeof providedToken == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use .setToken("YOUR_API_TOKEN") before utilisiing postBan.');
-    if (typeof providedHost == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use .setHost("YOUR_API_HOST") before utilisiing postBan.');
+    if (typeof token.get() == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use token.set("YOUR_API_TOKEN") before utilisiing postBan.');
+    if (typeof host.get() == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use host.set("YOUR_API_HOST") before utilisiing postBan.');
     if (typeof httpRoute == 'undefined') return console.log('[Cryptic Core] Firewall: no API Route was provided');
     const fetch = await axios({
         method: 'POST',
-        url: `${providedHost}/${httpRoute}`,
+        url: `${host.get()}/${httpRoute}`,
         headers: {
             Accept: 'application/json, text/plain, */*',
             'User-Agent': '*',
@@ -34,13 +28,13 @@ async function postBan(userId, userTag, databaseName, banReason, banProof, staff
 }
 
 async function searchBans(userId, httpRoute) {
-    if (typeof providedToken == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use .setToken("YOUR_API_TOKEN") before utilisiing postBan.');
-    if (typeof providedHost == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use .setHost("YOUR_API_HOST") before utilisiing postBan.');
+    if (typeof token.get() == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use .setToken("YOUR_API_TOKEN") before utilisiing postBan.');
+    if (typeof host.get() == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use .setHost("YOUR_API_HOST") before utilisiing postBan.');
     if (typeof httpRoute == 'undefined') return console.log('[Cryptic Core] Firewall: no API Route was provided');
     if (typeof userId == 'undefined') console.log('No userId was provided in node request.');
     let listFetch = await axios({
         method: 'get',
-        url: `${providedHost}/${httpRoute}/${userId}`
+        url: `${host.get()}/${httpRoute}/${userId}`
     });
     return listFetch.data;
 }
@@ -48,24 +42,24 @@ async function searchBans(userId, httpRoute) {
 async function getGlobalBans(httpRoute) {
     if (typeof token.get() == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use .setToken("YOUR_API_TOKEN") before utilisiing getGlobalBans.');
     // if (typeof providedToken == 'undefined') return 
-    if (typeof providedHost == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use .setHost("YOUR_API_HOST") before utilisiing getGlobalBans.');
+    if (typeof host.get() == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use .setHost("YOUR_API_HOST") before utilisiing getGlobalBans.');
     if (typeof httpRoute == 'undefined') return console.log('[Cryptic Core] Firewall: no API Route was provided');
 
     let listFetch = await axios({
         method: 'get',
-        url: `${providedHost}/${httpRoute}/global`,
+        url: `${host.get()}/${httpRoute}/global`,
     });
     return listFetch.data;
 }
 
 async function deleteBan(banId, reason, databaseName, staff, extras, httpRoute) {
     if (typeof token.get() == 'undefined') return console.log('[Cryptic Core] Firewall: requires a token to post a ban, use .setToken("YOUR_API_TOKEN") before utilisiing getGlobalBans.');
-    if (typeof providedHost == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use .setHost("YOUR_API_HOST") before utilisiing getGlobalBans.');
+    if (typeof host.get() == 'undefined') return console.log('[Cryptic Core] Firewall: no API Host was provided. firewall requires a Host Url to post a ban, use .setHost("YOUR_API_HOST") before utilisiing getGlobalBans.');
     if (typeof httpRoute == 'undefined') return console.log('[Cryptic Core] Firewall: no API Route was provided');
 
     const fetch = await axios({
         method: 'POST',
-        url: `${providedHost}/${httpRoute}`,
+        url: `${host.get()}/${httpRoute}`,
         headers: {
             Accept: 'application/json, text/plain, */*',
             'User-Agent': '*',
